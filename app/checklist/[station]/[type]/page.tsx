@@ -2,10 +2,10 @@
 
 import { useMemo, useState } from "react"
 import { useRouter } from "next/navigation"
-import { BrandShell } from "@/components/brand-shell"
-import { getStationByKey } from "@/lib/stations"
-import { ChecklistItem, ChecklistType, StationKey } from "@/lib/types"
-import { formatChecklistType } from "@/lib/utils"
+import { BrandShell } from "../../../../components/brand-shell"
+import { getStationByKey } from "../../../../lib/stations"
+import type { ChecklistItem, ChecklistType, StationKey } from "../../../../lib/types"
+import { formatChecklistType } from "../../../../lib/utils"
 
 export default function ChecklistFormPage({
   params,
@@ -44,8 +44,13 @@ export default function ChecklistFormPage({
     try {
       setIsSubmitting(true)
 
-      const checkedItems = items.filter((item) => selected.includes(item.id)).map((item) => item.label)
-      const uncheckedItems = items.filter((item) => !selected.includes(item.id)).map((item) => item.label)
+      const checkedItems = items
+        .filter((item) => selected.includes(item.id))
+        .map((item) => item.label)
+
+      const uncheckedItems = items
+        .filter((item) => !selected.includes(item.id))
+        .map((item) => item.label)
 
       const response = await fetch("/api/submit", {
         method: "POST",
