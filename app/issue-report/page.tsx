@@ -2,9 +2,9 @@
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
-import { BrandShell } from "@/components/brand-shell"
-import { stations } from "@/lib/stations"
-import { StationKey } from "@/lib/types"
+import { BrandShell } from "../../components/brand-shell"
+import { stations } from "../../lib/stations"
+import type { StationKey } from "../../lib/types"
 
 export default function IssueReportPage() {
   const router = useRouter()
