@@ -1,6 +1,6 @@
 import Link from "next/link"
-import { BrandShell } from "@/components/brand-shell"
-import { stations } from "@/lib/stations"
+import { BrandShell } from "../../components/brand-shell"
+import { stations } from "../../lib/stations"
 
 export default function ChecklistStationsPage() {
   return (
