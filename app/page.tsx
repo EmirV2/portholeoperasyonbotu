@@ -1,6 +1,5 @@
-import Link from "next/link"
-import { BrandShell } from "@/components/brand-shell"
-import { ActionCard } from "@/components/action-card"
+import { BrandShell } from "../components/brand-shell"
+import { ActionCard } from "../components/action-card"
 
 function IconPlay() {
   return <span className="text-lg">▶</span>
