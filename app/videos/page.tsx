@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { BrandShell } from "@/components/brand-shell"
+import { BrandShell } from "../../components/brand-shell"
 
 const videos = [
   {
