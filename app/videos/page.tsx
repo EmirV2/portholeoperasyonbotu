@@ -1,100 +1,44 @@
-import Link from "next/link";
-import { stations } from "../../lib/stations";
+import Link from "next/link"
+import { BrandShell } from "@/components/brand-shell"
+
+const videos = [
+  {
+    title: "Bar Makinesi Kullanım Videosu",
+    description: "Bar tipi bulaşık makinesi kullanım akışı.",
+    url: "#",
+  },
+  {
+    title: "Mutfak Makinesi Kullanım Videosu",
+    description: "Mutfak tipi bulaşık makinesi kullanım akışı.",
+    url: "#",
+  },
+]
 
 export default function VideosPage() {
   return (
-    <main
-      style={{
-        minHeight: "100vh",
-        padding: "24px 18px 40px",
-      }}
-    >
-      <div style={{ maxWidth: 1080, margin: "0 auto" }}>
-        <Link
-          href="/"
-          style={{
-            display: "inline-block",
-            marginBottom: 20,
-            color: "#c59b6d",
-            fontFamily: "Inter, Arial, sans-serif",
-          }}
-        >
-          ← Geri Dön
-        </Link>
-
-        <div style={{ textAlign: "center", marginBottom: 24 }}>
-          <h1 style={{ margin: 0, fontSize: 36, color: "#f8f2e9" }}>
-            Kullanım Videoları
-          </h1>
-          <p
-            style={{
-              marginTop: 10,
-              color: "rgba(244,239,231,0.72)",
-              fontFamily: "Inter, Arial, sans-serif",
-            }}
+    <BrandShell title="Kullanım Videoları" subtitle="Hızlı eğitim ve operasyon desteği">
+      <div className="grid gap-4">
+        {videos.map((video) => (
+          <a
+            key={video.title}
+            href={video.url}
+            className="rounded-[24px] border border-white/10 bg-white/[0.04] p-5"
           >
-            İlgili makine tipini seçerek kullanım videosunu izleyin.
-          </p>
-        </div>
-
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-            gap: 18,
-          }}
-        >
-          {stations.map((station) => (
-            <div
-              key={station.slug}
-              style={{
-                border: "1px solid rgba(197,155,109,0.28)",
-                borderRadius: 28,
-                padding: 18,
-                background:
-                  "linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%)",
-                boxShadow: "0 20px 60px rgba(0,0,0,0.35)",
-              }}
-            >
-              <div
-                style={{
-                  fontSize: 24,
-                  fontWeight: 700,
-                  marginBottom: 14,
-                  color: "#f6efe5",
-                }}
-              >
-                {station.name}
-              </div>
-
-              <div
-                style={{
-                  position: "relative",
-                  width: "100%",
-                  paddingTop: "56.25%",
-                  borderRadius: 18,
-                  overflow: "hidden",
-                  border: "1px solid rgba(197,155,109,0.2)",
-                }}
-              >
-                <iframe
-                  src={station.videoUrl}
-                  title={station.name}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  style={{
-                    position: "absolute",
-                    inset: 0,
-                    width: "100%",
-                    height: "100%",
-                    border: "0",
-                  }}
-                />
-              </div>
+            <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-2xl border border-[#c8a46b]/20 bg-[#0f1217] text-[#c8a46b]">
+              ▶
             </div>
-          ))}
-        </div>
+            <h2 className="text-lg font-semibold">{video.title}</h2>
+            <p className="mt-2 text-sm leading-6 text-white/60">{video.description}</p>
+          </a>
+        ))}
       </div>
-    </main>
-  );
+
+      <Link
+        href="/"
+        className="mt-4 inline-flex items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-white/70"
+      >
+        Ana Sayfaya Dön
+      </Link>
+    </BrandShell>
+  )
 }
