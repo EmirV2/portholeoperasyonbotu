@@ -1,7 +1,3 @@
-export function cn(...classes: Array<string | false | null | undefined>) {
-  return classes.filter(Boolean).join(" ")
-}
-
 export function getCompletionRate(total: number, checked: number) {
   if (total <= 0) return 0
   return Math.round((checked / total) * 100)
