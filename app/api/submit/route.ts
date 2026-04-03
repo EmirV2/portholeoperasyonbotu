@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
-import { sendChecklistToTelegram } from "@/lib/telegram"
-import { ChecklistPayload } from "@/lib/types"
+import { sendChecklistToTelegram } from "../../../lib/telegram"
+import type { ChecklistPayload } from "../../../lib/types"
 
 export async function POST(req: NextRequest) {
   try {
