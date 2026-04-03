@@ -1,8 +1,8 @@
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { BrandShell } from "@/components/brand-shell"
-import { getStationByKey } from "@/lib/stations"
-import { StationKey } from "@/lib/types"
+import { BrandShell } from "../../../components/brand-shell"
+import { getStationByKey } from "../../../lib/stations"
+import type { StationKey } from "../../../lib/types"
 
 export default async function StationTypePage({
   params,
