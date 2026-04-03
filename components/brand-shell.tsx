@@ -20,7 +20,9 @@ export function BrandShell({ children, title, subtitle }: BrandShellProps) {
               <p className="text-[11px] uppercase tracking-[0.28em] text-[#c8a46b]">
                 Porthole Operations
               </p>
-              <h1 className="text-xl font-semibold tracking-tight">{title || "Operasyon Paneli"}</h1>
+              <h1 className="text-xl font-semibold tracking-tight">
+                {title || "Operasyon Paneli"}
+              </h1>
               {subtitle ? <p className="mt-1 text-sm text-white/60">{subtitle}</p> : null}
             </div>
           </div>
