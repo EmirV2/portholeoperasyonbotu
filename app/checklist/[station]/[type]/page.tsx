@@ -1,21 +1,15 @@
 "use client"
 
 import { useMemo, useState } from "react"
-import { useRouter } from "next/navigation"
+import { useParams, useRouter } from "next/navigation"
 import { BrandShell } from "../../../../components/brand-shell"
 import { getStationByKey } from "../../../../lib/stations"
 import type { ChecklistItem, ChecklistType, StationKey } from "../../../../lib/types"
 import { formatChecklistType } from "../../../../lib/utils"
 
-type PageProps = {
-  params: {
-    station: string
-    type: string
-  }
-}
-
-export default function ChecklistFormPage({ params }: PageProps) {
+export default function ChecklistFormPage() {
   const router = useRouter()
+  const params = useParams<{ station: string; type: string }>()
 
   const stationKey = params.station as StationKey
   const checklistType = params.type as ChecklistType
@@ -34,9 +28,7 @@ export default function ChecklistFormPage({ params }: PageProps) {
   if (!station) {
     return (
       <BrandShell title="Bulunamadı" subtitle="İstasyon bilgisi alınamadı">
-        <div className="rounded-[24px] border border-red-500/20 bg-red-500/10 p-4 text-sm text-red-200">
-          İstasyon bulunamadı.
-        </div>
+        <div>İstasyon bulunamadı.</div>
       </BrandShell>
     )
   }
@@ -44,9 +36,7 @@ export default function ChecklistFormPage({ params }: PageProps) {
   if (checklistType !== "opening" && checklistType !== "closing") {
     return (
       <BrandShell title="Bulunamadı" subtitle="Checklist türü geçersiz">
-        <div className="rounded-[24px] border border-red-500/20 bg-red-500/10 p-4 text-sm text-red-200">
-          Checklist türü geçersiz.
-        </div>
+        <div>Checklist türü geçersiz.</div>
       </BrandShell>
     )
   }
@@ -110,71 +100,41 @@ export default function ChecklistFormPage({ params }: PageProps) {
       title={station.shortTitle}
       subtitle={`${formatChecklistType(checklistType)} checklist formu`}
     >
-      <div className="space-y-4">
-        <div className="rounded-[24px] border border-white/10 bg-white/[0.04] p-4">
-          <label className="mb-2 block text-sm text-white/70">Personel Adı</label>
-          <input
-            value={staffName}
-            onChange={(e) => setStaffName(e.target.value)}
-            placeholder="Ad Soyad"
-            className="w-full rounded-2xl border border-white/10 bg-[#0d1015] px-4 py-3 text-sm text-white outline-none placeholder:text-white/25"
-          />
+      <div>
+        <label>Personel Adı</label>
+        <input
+          value={staffName}
+          onChange={(e) => setStaffName(e.target.value)}
+          placeholder="Ad Soyad"
+        />
+
+        <div>
+          <p>Kontrol Maddeleri</p>
+          {items.map((item) => {
+            const active = selected.includes(item.id)
+
+            return (
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => toggleItem(item.id)}
+              >
+                <span>{active ? "✓ " : ""}</span>
+                <span>{item.label}</span>
+              </button>
+            )
+          })}
         </div>
 
-        <div className="rounded-[24px] border border-white/10 bg-white/[0.04] p-4">
-          <p className="mb-3 text-sm text-white/70">Kontrol Maddeleri</p>
+        <label>Not</label>
+        <textarea
+          value={note}
+          onChange={(e) => setNote(e.target.value)}
+          rows={4}
+          placeholder="Opsiyonel not ekleyebilirsin"
+        />
 
-          <div className="space-y-3">
-            {items.map((item) => {
-              const active = selected.includes(item.id)
-
-              return (
-                <button
-                  key={item.id}
-                  type="button"
-                  onClick={() => toggleItem(item.id)}
-                  className={`w-full rounded-2xl border px-4 py-3 text-left transition ${
-                    active
-                      ? "border-[#c8a46b]/40 bg-[#c8a46b]/10 text-white"
-                      : "border-white/10 bg-[#0d1015] text-white/75"
-                  }`}
-                >
-                  <div className="flex items-start gap-3">
-                    <div
-                      className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border text-[11px] ${
-                        active
-                          ? "border-[#c8a46b] bg-[#c8a46b] text-black"
-                          : "border-white/20 text-transparent"
-                      }`}
-                    >
-                      ✓
-                    </div>
-
-                    <span className="text-sm leading-6">{item.label}</span>
-                  </div>
-                </button>
-              )
-            })}
-          </div>
-        </div>
-
-        <div className="rounded-[24px] border border-white/10 bg-white/[0.04] p-4">
-          <label className="mb-2 block text-sm text-white/70">Not</label>
-          <textarea
-            value={note}
-            onChange={(e) => setNote(e.target.value)}
-            rows={4}
-            placeholder="Opsiyonel not ekleyebilirsin"
-            className="w-full rounded-2xl border border-white/10 bg-[#0d1015] px-4 py-3 text-sm text-white outline-none placeholder:text-white/25"
-          />
-        </div>
-
-        <button
-          type="button"
-          onClick={handleSubmit}
-          disabled={isSubmitting}
-          className="w-full rounded-[22px] bg-[#c8a46b] px-4 py-4 text-sm font-semibold text-black transition hover:opacity-95 disabled:opacity-50"
-        >
+        <button type="button" onClick={handleSubmit} disabled={isSubmitting}>
           {isSubmitting ? "Gönderiliyor..." : "Checklist Gönder"}
         </button>
       </div>
