@@ -75,14 +75,11 @@ img {
 }
 
 .brand-logo {
-  width: 58px;
-  height: 58px;
+  width: 64px;
+  height: 64px;
   object-fit: contain;
   object-position: center;
-  image-rendering: auto;
-  filter: none;
 }
-
 .brand-kicker {
   margin: 0 0 4px;
   font-size: 11px;
