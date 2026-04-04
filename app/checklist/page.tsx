@@ -4,16 +4,33 @@ import { stations } from "../../lib/stations"
 
 export default function ChecklistStationsPage() {
   return (
-    <BrandShell title="Checklist İstasyonu Seç" subtitle="İlgili operasyon alanını seç">
-      <div className="grid gap-4">
+    <BrandShell
+      title="Checklist Seç"
+      subtitle="Kontrol yapılacak operasyon alanını seç"
+    >
+      <section className="hero-card">
+        <p className="hero-label">Checklist Akışı</p>
+        <h2 className="hero-title">
+          Hangi istasyonda
+          <br />
+          işlem yapılacak?
+        </h2>
+        <p className="hero-text">
+          Önce ilgili makine veya operasyon alanını seç. Sonraki ekranda açılış ya da
+          kapanış checklist türünü belirleyip işleme devam et.
+        </p>
+      </section>
+
+      <div className="station-list">
         {stations.map((station) => (
           <Link
             key={station.key}
             href={`/checklist/${station.key}`}
-            className="rounded-[24px] border border-white/10 bg-white/[0.04] p-5"
+            className="station-card"
           >
-            <h2 className="text-lg font-semibold">{station.title}</h2>
-            <p className="mt-2 text-sm leading-6 text-white/60">{station.description}</p>
+            <h2 className="station-card-title">{station.title}</h2>
+            <p className="station-card-text">{station.description}</p>
+            <div className="station-card-link">Devam Et →</div>
           </Link>
         ))}
       </div>
