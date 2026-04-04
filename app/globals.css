@@ -1,22 +1,27 @@
+@import "tailwindcss";
+
 :root {
-  color-scheme: dark;
+  --background: #07090c;
+  --foreground: #f5efe6;
 }
 
 * {
   box-sizing: border-box;
 }
 
-html,
-body {
-  margin: 0;
-  padding: 0;
+html {
   min-height: 100%;
-  font-family: Georgia, "Times New Roman", serif;
+  background: var(--background);
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
   background:
-    radial-gradient(circle at top left, rgba(180, 138, 93, 0.16), transparent 24%),
-    radial-gradient(circle at top right, rgba(180, 138, 93, 0.1), transparent 22%),
-    linear-gradient(180deg, #070707 0%, #111111 100%);
-  color: #f4efe7;
+    radial-gradient(circle at top left, rgba(200, 164, 107, 0.12), transparent 28%),
+    #07090c;
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 a {
@@ -26,11 +31,7 @@ a {
 
 button,
 input,
-textarea {
+textarea,
+select {
   font: inherit;
-}
-
-img {
-  display: block;
-  max-width: 100%;
 }
