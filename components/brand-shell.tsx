@@ -13,17 +13,7 @@ export function BrandShell({ children, title, subtitle }: BrandShellProps) {
         <section className="brand-header">
           <div className="brand-header-row">
             <div className="brand-logo-box">
-              <img
-                src="/logo.png"
-                alt="Porthole"
-                className="brand-logo"
-                onError={(e) => {
-                  ;(e.currentTarget.style.display = "none")
-                  const next = e.currentTarget.nextElementSibling as HTMLElement | null
-                  if (next) next.style.display = "block"
-                }}
-              />
-              <div className="logo-fallback" style={{ display: "none" }} />
+              <img src="/logo.png" alt="Porthole" className="brand-logo" />
             </div>
 
             <div>
