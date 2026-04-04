@@ -8,18 +8,22 @@ export async function POST(req: NextRequest) {
 
     if (!body.station || !body.staffName || !body.title || !body.description) {
       return NextResponse.json(
-        { message: "Eksik zorunlu alanlar var." },
+        { ok: false, message: "Eksik zorunlu alanlar var." },
         { status: 400 }
       )
     }
 
     await sendIssueToTelegram(body)
 
-    return NextResponse.json({ ok: true })
+    return NextResponse.json({ ok: true, message: "Arıza bildirimi gönderildi." })
   } catch (error) {
     console.error("Issue submit error:", error)
+
     return NextResponse.json(
-      { message: "Arıza bildirimi gönderimi başarısız oldu." },
+      {
+        ok: false,
+        message: error instanceof Error ? error.message : "Arıza bildirimi gönderimi başarısız oldu.",
+      },
       { status: 500 }
     )
   }
