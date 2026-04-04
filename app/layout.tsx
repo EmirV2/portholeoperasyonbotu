@@ -1,19 +1,19 @@
-import "./globals.css";
-import type { Metadata } from "next";
+import "./globals.css"
+import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Porthole Operasyon",
-  description: "Porthole operasyon paneli",
-};
+  title: "Porthole Operations",
+  description: "Porthole iç operasyon paneli",
+}
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   return (
     <html lang="tr">
       <body>{children}</body>
     </html>
-  );
+  )
 }
