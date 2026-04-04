@@ -5,12 +5,12 @@ const videos = [
   {
     title: "Bar Makinesi Kullanım Videosu",
     description: "Bar tipi bulaşık makinesi kullanım akışı.",
-    url: "https://www.youtube.com/watch?v=VIDEO_1",
+    url: "https://youtu.be/iq3aIZz8x3M?si=vqLDNhuDc7qcOXEu",
   },
   {
     title: "Mutfak Makinesi Kullanım Videosu",
     description: "Mutfak tipi bulaşık makinesi kullanım akışı.",
-    url: "https://www.youtube.com/watch?v=VIDEO_2",
+    url: "https://youtu.be/iq3aIZz8x3M?si=vqLDNhuDc7qcOXEu",
   },
 ]
 
