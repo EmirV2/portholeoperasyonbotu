@@ -1,4 +1,4 @@
-import { StationConfig, StationKey } from "./types"
+import type { StationConfig, StationKey } from "./types"
 
 export const stations: StationConfig[] = [
   {
