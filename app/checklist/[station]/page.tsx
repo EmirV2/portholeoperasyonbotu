@@ -4,15 +4,19 @@ import { BrandShell } from "../../../components/brand-shell"
 import { getStationByKey } from "../../../lib/stations"
 import type { StationKey } from "../../../lib/types"
 
-export default async function StationTypePage({
-  params,
-}: {
-  params: Promise<{ station: StationKey }>
-}) {
-  const { station } = await params
+type PageProps = {
+  params: {
+    station: string
+  }
+}
+
+export default function StationTypePage({ params }: PageProps) {
+  const station = params.station as StationKey
   const stationData = getStationByKey(station)
 
-  if (!stationData) return notFound()
+  if (!stationData) {
+    return notFound()
+  }
 
   return (
     <BrandShell title={stationData.shortTitle} subtitle="Checklist türünü seç">
